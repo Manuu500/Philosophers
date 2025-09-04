@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/04 15:17:47 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/04 17:39:11 by mruiz-ur         ###   ########.fr       */
+/*   Created: 2025/09/04 16:10:06 by mruiz-ur          #+#    #+#             */
+/*   Updated: 2025/09/04 17:39:42 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	main(int argc, char **argv)
+void	initialize_vars(t_main *main, char **argv)
 {
-	t_main main;
-	
-	if (argc < 0 || argc > 6)
-		return (0);
-	else
+	int	philo_count;
+
+	philo_count = ft_atoi(argv[1]);	
+	main->philo_array = malloc(sizeof(char) * philo_count);
+	if (!main->philo_array)
 	{
-		ft_bzero(&main, sizeof(main));
-		initialize_vars(&main, argv);
-		set_philosopher(&main, argc);
-		free(main.philo_array);
+		free(main->philo_array);
+		exit(1);
 	}
 }

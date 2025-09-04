@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philosopher.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/04 15:17:47 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/04 17:39:11 by mruiz-ur         ###   ########.fr       */
+/*   Created: 2025/09/04 15:39:28 by mruiz-ur          #+#    #+#             */
+/*   Updated: 2025/09/04 17:40:10 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	main(int argc, char **argv)
+void	set_philosopher(t_main *main, int philo_num)
 {
-	t_main main;
+	t_philo philo;
+	(void) main;
+	int	i;
 	
-	if (argc < 0 || argc > 6)
-		return (0);
-	else
+	if (main->philo_array)
+		printf("Piolita mi pana");
+	i = 0;
+	while (i <= philo_num)
 	{
-		ft_bzero(&main, sizeof(main));
-		initialize_vars(&main, argv);
-		set_philosopher(&main, argc);
-		free(main.philo_array);
+		philo.is_dead = 0;
+		philo.num = i;
+		i++;
 	}
 }
