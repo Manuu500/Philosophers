@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosopher.c                                      :+:      :+:    :+:   */
+/*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/04 15:39:28 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/08 16:22:11 by mruiz-ur         ###   ########.fr       */
+/*   Created: 2025/09/09 16:41:25 by mruiz-ur          #+#    #+#             */
+/*   Updated: 2025/09/09 17:04:25 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	set_philosopher(t_main *main, int philo_num)
+void	check_input(char **args, int argc)
 {
-	// t_philo philo;
-	(void) philo_num;
-	(void) main;
 	int	i;
-	
-	if (main->philo_array)
-		// printf("Piolita mi pana");
-	i = 0;
-	// while (i <= philo_num)
-	// {
-	// 	philo.index = i;
-	// 	i++;
-	// }
+
+	i = 1;
+	while (i < argc)
+	{
+		if (!(args[i][0] >= '0' && args[i][0] <= '9'))
+		{
+			printf("Un argumento no es un número");
+			exit(1);
+		}
+		i++;
+	}
 }

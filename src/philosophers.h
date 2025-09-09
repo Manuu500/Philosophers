@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/04 17:39:26 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:47:50 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,28 @@
 # define PHILOSOPHERS_H
 # include <stdio.h>
 # include <stdlib.h>
+# include <pthread.h>
+# include <unistd.h>
 
 typedef struct philosophers
 {
-	int	num;
-	int	is_dead;
+	int	index;
+	pthread_t thread;
 }					t_philo;
 
 typedef struct main
 {
-	t_philo *philo_array;	
+	t_philo *philo_array;
+	pthread_mutex_t	*fork;	
 }					t_main;
 
+int		ft_atoi(const char *str);
 void	set_philosopher(t_main *main, int num_philo);
 void	initialize_vars(t_main *main, char **argv);
 void	*ft_calloc(size_t num, size_t size);
-int		ft_atoi(const char *str);
 void	ft_bzero(void *s, unsigned int leng);
+void	initialize_threads(t_main *main, char **argv);
+void	check_input(char **args, int argc);
+void	*prueba();
 
 #endif

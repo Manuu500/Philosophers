@@ -9,7 +9,8 @@ HEADERS	:=	-I ./inc
 SRC :=	src/main.c \
 		src/philosopher.c \
 		src/utils_functions.c \
-		src/utils.c
+		src/utils.c \
+		src/input.c
 
 OBJ	= $(patsubst src%, obj%, $(SRC:.c=.o))
 
