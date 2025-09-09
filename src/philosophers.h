@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/09 16:47:50 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:09:45 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef struct philosophers
 typedef struct main
 {
 	t_philo *philo_array;
-	pthread_mutex_t	*fork;	
+	pthread_mutex_t	*fork;
+	pthread_mutex_t *write_mutex;	
 }					t_main;
 
 int		ft_atoi(const char *str);
@@ -36,6 +37,6 @@ void	*ft_calloc(size_t num, size_t size);
 void	ft_bzero(void *s, unsigned int leng);
 void	initialize_threads(t_main *main, char **argv);
 void	check_input(char **args, int argc);
-void	*prueba();
+void	*prueba(t_main *main);
 
 #endif

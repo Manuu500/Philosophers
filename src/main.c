@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:17:47 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/09 16:47:56 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:30:26 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,18 @@ void	*rutina()
 	return (0);
 }
 
-void	*prueba()
+void	*prueba(t_main *main)
 {
+	(void) main;
+	pthread_mutex_lock(main->write_mutex);
 	printf("Hola cada hilo de filosofo se ha creado bien\n");
+	pthread_mutex_unlock(main->write_mutex);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_main main;
-	// pthread_t t1, t2;
 	
 	if (argc < 0 || argc > 6)
 		return (0);
@@ -41,10 +43,7 @@ int	main(int argc, char **argv)
 		initialize_vars(&main, argv);
 		initialize_threads(&main, argv);
 		set_philosopher(&main, argc);
-		// pthread_create(&t1, NULL, &rutina, NULL);
-		// pthread_create(&t2, NULL, &rutina, NULL);
-		// pthread_join(t1, NULL);
-		// pthread_join(t2, NULL);
+		pthread_mutex_destroy(main.write_mutex);
 		// free(main.philo_array);
 		// free(main.fork_array);
 	}
