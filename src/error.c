@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:00:50 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/09 19:08:09 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/09 19:15:33 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,23 @@
 
 void	f_error(t_main *main)
 {
-	if (main->fork)
-		free(main->fork);
-	if (main->philo_array->write_lock)
-		free(main->philo_array->write_lock);
-	if (main->philo_array->dead_lock)
-		free(main->philo_array->dead_lock);
-	if (main->philo_array->meal_lock)
-		free(main->philo_array->meal_lock);
-	if (main->philo_array->r_fork)
-		free(main->philo_array->r_fork);
-	if (main->philo_array->l_fork)
-		free(main->philo_array->l_fork);
+	int	i;
+
+	i = 0;
+	while (i < main->philo_count)
+	{
+		if (main->philo_array[i].write_lock)
+			free(main->philo_array[i].write_lock);
+		if (main->philo_array[i].dead_lock)
+			free(main->philo_array[i].dead_lock);
+		if (main->philo_array[i].meal_lock)
+			free(main->philo_array[i].meal_lock);
+		if (main->philo_array[i].r_fork)
+			free(main->philo_array[i].r_fork);
+		if (main->philo_array[i].l_fork)
+			free(main->philo_array[i].l_fork);
+		i++;
+	}
 	free(main->philo_array);
 	exit (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:10:06 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/09 19:03:58 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/09 19:34:11 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,26 @@ static void	allocate_all_mutex(t_main *main, int i)
 void	initialize_vars(t_main *main, char **argv)
 {
 	int	philo_count;
-	// int	i = 0;
+	int	i = 0;
 
 	philo_count = ft_atoi(argv[1]);
 	main->philo_array = malloc(sizeof(t_philo) * philo_count);
 	if (!main->philo_array)
 		exit(1);
-	//DEBUG
-	// while (i <= fork_count)
-	// {
-	// 	i++;
-	// 	printf("Hay %d tenedores", i);
-	// }
+	main->philo_count = 0;
+	while (i < main->philo_count)
+	{
+		main->philo_array[i].id = i;
+		main->philo_array[i].meals_eaten = 0;
+		main->philo_array[i].num_times_to_eat = 0;
+		main->philo_array[i].dead = 0;
+		main->philo_array[i].last_meal = 0;
+		main->philo_array[i].time_to_die = 0;
+		main->philo_array[i].write_lock = 0;
+		main->philo_array[i].dead_lock = 0;
+		main->philo_array[i].meal_lock = 0;
+		i++;
+	}
 }
 
 void	initialize_threads(t_main *main, char **argv)
@@ -82,4 +90,25 @@ void	initialize_all_mutex(t_main *main)
 	pthread_mutex_init(&main->write_lock, NULL);
 	pthread_mutex_init(&main->dead_lock, NULL);
 	pthread_mutex_init(&main->meal_lock, NULL);	
+}
+
+void	safe_free(t_main *main)
+{
+	int	i;
+
+	i = 0;
+	while (i < main->philo_count)
+	{
+		if (main->philo_array[i].write_lock)
+			free(main->philo_array[i].write_lock);
+		if (main->philo_array[i].dead_lock)
+			free(main->philo_array[i].dead_lock);
+		if (main->philo_array[i].meal_lock)
+			free(main->philo_array[i].meal_lock);
+		if (main->philo_array[i].r_fork)
+			free(main->philo_array[i].r_fork);
+		if (main->philo_array[i].l_fork)
+			free(main->philo_array[i].l_fork);
+		i++;	
+	}
 }
