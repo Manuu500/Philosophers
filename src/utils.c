@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:10:06 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/10 16:51:55 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/10 18:39:16 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,17 @@ static void	allocate_all_mutex(t_main *main, int i)
 void	initialize_vars(t_main *main, char **argv)
 {
 	int	philo_count;
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	philo_count = ft_atoi(argv[1]);
+	main->philo_count = philo_count;
 	main->philo_array = malloc(sizeof(t_philo) * philo_count);
 	if (!main->philo_array)
 		exit(1);
-	main->philo_count = 0;
 	while (i < main->philo_count)
 	{
-		main->philo_array[i].id = i;
+		main->philo_array[i].id = i + 1;
 		main->philo_array[i].meals_eaten = 0;
 		main->philo_array[i].num_times_to_eat = 0;
 		main->philo_array[i].dead = 0;
@@ -68,8 +69,9 @@ void	initialize_threads(t_main *main, char **argv)
 		pthread_create(&main->philo_array[i].thread, NULL, (void *)&prueba, main);
 		pthread_join(main->philo_array[i].thread, NULL);
 		i++;
-		main->philo_count++;
 	}
+	pthread_create(&main->observer, NULL, (void *)&observer, main);
+	pthread_join(main->observer, NULL);
 }
 
 void	initialize_all_mutex(t_main *main)

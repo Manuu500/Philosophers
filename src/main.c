@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:17:47 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/10 16:46:23 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/10 18:37:17 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ void	*rutina()
 	printf("Hola esta funcionando los hilos\n");
 	sleep(3);
 	printf("Ya no funciona\n");
+	return (0);
+}
+
+void	*observer(t_main *main)
+{
+	(void) main;
+	printf("Se ha creado el hilo observador\n");
 	return (0);
 }
 
@@ -39,12 +46,11 @@ int	main(int argc, char **argv)
 	{
 		check_input(argv, argc);
 		initialize_vars(&main, argv);
-		initialize_threads(&main, argv);
 		initialize_all_mutex(&main);
 		set_philosopher(&main, argc);
+		initialize_threads(&main, argv);
+		check_philos(&main);
 		pthread_mutex_destroy(&main.write_lock);
 		safe_free(&main);
-		// free(main.philo_array);
-		// free(main.fork_array);
 	}
 }

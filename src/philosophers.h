@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/10 16:46:13 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/10 18:40:24 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ typedef struct s_main
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
-	pthread_mutex_t write_lock;	
+	pthread_mutex_t write_lock;
+	pthread_t	observer;
 }					t_main;
 
 int		ft_atoi(const char *str);
@@ -56,8 +57,11 @@ void	ft_bzero(void *s, unsigned int leng);
 void	initialize_threads(t_main *main, char **argv);
 void	check_input(char **args, int argc);
 void	*prueba(t_main *main);
+void	*observer(t_main *main);
 void	initialize_all_mutex(t_main *main);
 void	f_error(t_main *main);
 void	safe_free(t_main *main);
+void	check_philos(t_main *main);
+void	*routine(t_main *main);
 
 #endif
