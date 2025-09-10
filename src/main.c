@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:17:47 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/09 19:10:05 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:46:23 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	main(int argc, char **argv)
 		return (0);
 	else
 	{
-		// ft_bzero(&main, sizeof(main));
 		check_input(argv, argc);
 		initialize_vars(&main, argv);
 		initialize_threads(&main, argv);
 		initialize_all_mutex(&main);
 		set_philosopher(&main, argc);
 		pthread_mutex_destroy(&main.write_lock);
+		safe_free(&main);
 		// free(main.philo_array);
 		// free(main.fork_array);
 	}

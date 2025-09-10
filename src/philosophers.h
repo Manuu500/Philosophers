@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/09 19:04:01 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:46:13 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void	check_input(char **args, int argc);
 void	*prueba(t_main *main);
 void	initialize_all_mutex(t_main *main);
 void	f_error(t_main *main);
+void	safe_free(t_main *main);
 
 #endif
