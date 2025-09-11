@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:17:47 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/10 18:37:17 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:00:51 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,19 @@ int	main(int argc, char **argv)
 		check_input(argv, argc);
 		initialize_vars(&main, argv);
 		initialize_all_mutex(&main);
-		set_philosopher(&main, argc);
+		// set_philosopher(&main, argc);
 		initialize_threads(&main, argv);
+		start_forks(&main);
 		check_philos(&main);
 		pthread_mutex_destroy(&main.write_lock);
 		safe_free(&main);
+		//DEBUG
+		// int i = 0;
+		// while (i < main.philo_count)
+		// {
+		// 	if (&main.fork[i])
+		// 		printf("El tenedor %d esta guardado correctamente\n", i + 1);
+		// 	i++;
+		// }
 	}
 }

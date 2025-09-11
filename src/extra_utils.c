@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.c                                          :+:      :+:    :+:   */
+/*   extra_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/10 18:12:22 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/11 13:12:09 by mruiz-ur         ###   ########.fr       */
+/*   Created: 2025/09/11 13:49:52 by mruiz-ur          #+#    #+#             */
+/*   Updated: 2025/09/11 16:55:00 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	*routine(t_main *main)
-{
-	while (main->dead_flag != 1)
-	{
-		
-	}
-	return (0);
-}
-
-//DEBUG
-void	check_philos(t_main *main)
+void	start_forks(t_main *main)
 {
 	int	i;
 
+	main->fork = malloc(sizeof(pthread_mutex_t) * main->philo_count);
+	if (!main->fork)
+		f_error(main);
 	i = 0;
 	while (i < main->philo_count)
 	{
-		printf("El id del filósofo es: %d\n", main->philo_array[i].id);
-		i++;		
+		pthread_mutex_init(&main->fork[i], NULL);
+		printf("Se ha creado el tenedor: %i\n", i + 1);
+		i++;
 	}
 }

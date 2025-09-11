@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/10 18:40:24 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:55:43 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 
 typedef struct s_philosophers
 {
-	int	id;
+	int				id;
 	int				eating;
 	int				meals_eaten;
 	int				num_times_to_eat;
-	int				*dead;
+	int				dead;
 	size_t			last_meal;
 	size_t			time_to_die;
 	size_t			time_to_eat;
@@ -39,14 +39,14 @@ typedef struct s_philosophers
 
 typedef struct s_main
 {
-	int		philo_count;
-	int		dead_flag;
-	t_philo *philo_array;
-	pthread_mutex_t	*fork;
+	int				philo_count;
+	int				dead_flag;
+	t_philo 		*philo_array;
+	pthread_mutex_t *fork;
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t write_lock;
-	pthread_t	observer;
+	pthread_t		observer;
 }					t_main;
 
 int		ft_atoi(const char *str);
@@ -63,5 +63,6 @@ void	f_error(t_main *main);
 void	safe_free(t_main *main);
 void	check_philos(t_main *main);
 void	*routine(t_main *main);
+void	start_forks(t_main *main);
 
 #endif

@@ -12,7 +12,8 @@ SRC :=	src/main.c \
 		src/utils.c \
 		src/input.c \
 		src/error.c \
-		src/routine.c
+		src/routine.c \
+		src/extra_utils.c
 
 OBJ	= $(patsubst src%, obj%, $(SRC:.c=.o))
 
