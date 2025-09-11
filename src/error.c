@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:00:50 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/11 13:46:10 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:04:21 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	safe_free(t_main *main)
 	int	i;
 
 	i = 0;
+	if (main->fork)
+		free(main->fork);
 	while (i < main->philo_count)
 	{
 		if (main->philo_array[i].write_lock)
