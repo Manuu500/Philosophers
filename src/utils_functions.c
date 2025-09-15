@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:15:33 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/04 17:22:58 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/15 17:02:23 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,3 +79,18 @@ void	ft_bzero(void *s, unsigned int leng)
 	}
 }
 
+char	*ft_strchr(const char *s, int c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s + i);
+	return (0);
+}

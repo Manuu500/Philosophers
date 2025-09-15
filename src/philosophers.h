@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/11 16:55:43 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/15 17:02:38 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <unistd.h>
+#include <sys/time.h>
 
 typedef struct s_philosophers
 {
@@ -64,5 +65,12 @@ void	safe_free(t_main *main);
 void	check_philos(t_main *main);
 void	*routine(t_main *main);
 void	start_forks(t_main *main);
+char	*ft_strchr(const char *s, int c);
+//ROUTINES
+void	*r_think(t_main *main);
+void	*r_eat(t_main *main);
+void	*r_sleep(t_main *main);
+//
+size_t	get_current_time(void);
 
 #endif
