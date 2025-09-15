@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/15 17:02:38 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/15 18:02:21 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	initialize_all_mutex(t_main *main);
 void	f_error(t_main *main);
 void	safe_free(t_main *main);
 void	check_philos(t_main *main);
-void	*routine(t_main *main);
+void	*routine(void *main);
 void	start_forks(t_main *main);
 char	*ft_strchr(const char *s, int c);
 //ROUTINES

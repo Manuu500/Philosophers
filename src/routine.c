@@ -6,17 +6,25 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 18:12:22 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/15 15:51:55 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/15 19:23:53 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	*routine(t_main *main)
+void	*routine(void *main)
 {
-	while (main->dead_flag != 1)
+	t_philo *philo;
+
+	philo = (t_philo *)main;
+	while (!philo->dead)
 	{
-		
+		printf("El filosofo %d está pensando\n", philo->id);
+		sleep(1);
+		printf("El filosofo %d está comiendo\n", philo->id);
+		sleep(1);
+		printf("El filosofo %d está durmiendo\n", philo->id);
+		sleep(1);
 	}
 	return (0);
 }

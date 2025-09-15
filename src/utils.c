@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:10:06 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/11 16:52:01 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/15 18:12:29 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,12 @@ void	initialize_threads(t_main *main, char **argv)
 	thread_amount = ft_atoi(argv[1]);
 	while (i < thread_amount)
 	{
-		pthread_create(&main->philo_array[i].thread, NULL, (void *)&prueba, main);
-		pthread_join(main->philo_array[i].thread, NULL);
+		//printf("%i\n", thread_amount);
+		pthread_create(&main->philo_array[i].thread, NULL, (void *)&routine, &main->philo_array[i]);
+		//pthread_join(main->philo_array[i].thread, NULL);
 		i++;
 	}
+	pthread_join(main->philo_array[1].thread, NULL);
 	pthread_create(&main->observer, NULL, (void *)&observer, main);
 	pthread_join(main->observer, NULL);
 }

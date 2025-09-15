@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:17:47 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/15 16:53:31 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/15 19:20:19 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,13 @@ int	main(int argc, char **argv)
 		check_input(argv, argc);
 		initialize_vars(&main, argv);
 		initialize_all_mutex(&main);
-		initialize_threads(&main, argv);
 		start_forks(&main);
+		initialize_threads(&main, argv);
 		check_philos(&main);
-		r_think(&main);
-		r_sleep(&main);
-		r_eat(&main);
+		routine(&main);
+		// r_think(&main);
+		// r_sleep(&main);
+		// r_eat(&main);
 		pthread_mutex_destroy(&main.write_lock);
 		safe_free(&main);
 		//DEBUG
