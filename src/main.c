@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:17:47 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/15 19:20:19 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:35:21 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,8 @@ int	main(int argc, char **argv)
 		initialize_all_mutex(&main);
 		start_forks(&main);
 		initialize_threads(&main, argv);
+		// routine(&main);
 		check_philos(&main);
-		routine(&main);
-		// r_think(&main);
-		// r_sleep(&main);
-		// r_eat(&main);
 		pthread_mutex_destroy(&main.write_lock);
 		safe_free(&main);
 		//DEBUG

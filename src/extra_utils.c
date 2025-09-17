@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 13:49:52 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/15 16:35:50 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:35:32 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	start_forks(t_main *main)
 		printf("Se ha creado el tenedor: %i\n", i + 1);
 		i++;
 	}
+	assign_forks(main);
 }
 
 size_t	get_current_time(void)

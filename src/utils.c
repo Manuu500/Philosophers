@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:10:06 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/15 18:12:29 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:34:55 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	initialize_vars(t_main *main, char **argv)
 		exit(1);
 	while (i < main->philo_count)
 	{
-		main->philo_array[i].id = i + 1;
+		main->philo_array[i].id = i;
 		main->philo_array[i].meals_eaten = 0;
 		main->philo_array[i].num_times_to_eat = 0;
 		main->philo_array[i].dead = 0;
@@ -66,14 +66,15 @@ void	initialize_threads(t_main *main, char **argv)
 	thread_amount = ft_atoi(argv[1]);
 	while (i < thread_amount)
 	{
-		//printf("%i\n", thread_amount);
 		pthread_create(&main->philo_array[i].thread, NULL, (void *)&routine, &main->philo_array[i]);
-		//pthread_join(main->philo_array[i].thread, NULL);
 		i++;
 	}
 	pthread_join(main->philo_array[1].thread, NULL);
-	pthread_create(&main->observer, NULL, (void *)&observer, main);
-	pthread_join(main->observer, NULL);
+	if (main->philo_count > 1)
+	{
+		pthread_create(&main->observer, NULL, (void *)&observer, main);
+		pthread_join(main->observer, NULL);	
+	}
 }
 
 void	initialize_all_mutex(t_main *main)
@@ -96,3 +97,18 @@ void	initialize_all_mutex(t_main *main)
 	pthread_mutex_init(&main->meal_lock, NULL);	
 }
 
+void	assign_forks(t_main *main)
+{
+	int	i;
+
+	i = 0;
+	while (i < main->philo_count)
+	{
+		main->philo_array[i].l_fork = &main->fork[i];
+        main->philo_array[i].r_fork = &main->fork[(i + 1) % main->philo_count];
+		    printf("Filosofo %d: l_fork=%p, r_fork=%p\n", i, 
+            (void*)main->philo_array[i].l_fork, 
+            (void*)main->philo_array[i].r_fork);
+		i++;
+	}
+}
