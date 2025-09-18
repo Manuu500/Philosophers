@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:10:06 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/17 18:34:55 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:44:49 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,16 @@ void	initialize_threads(t_main *main, char **argv)
 		pthread_create(&main->philo_array[i].thread, NULL, (void *)&routine, &main->philo_array[i]);
 		i++;
 	}
-	pthread_join(main->philo_array[1].thread, NULL);
 	if (main->philo_count > 1)
-	{
 		pthread_create(&main->observer, NULL, (void *)&observer, main);
-		pthread_join(main->observer, NULL);	
+	i = 0;
+	while (i < thread_amount)
+	{
+		pthread_join(main->philo_array[1].thread, NULL);
+		i++;
 	}
+	if (main->philo_count > 1)
+		pthread_join(main->observer, NULL);	
 }
 
 void	initialize_all_mutex(t_main *main)
