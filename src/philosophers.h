@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/17 18:08:26 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/19 19:03:52 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void	*r_sleep(t_main *main);
 //
 size_t	get_current_time(void);
 void	assign_forks(t_main *main);
+void	*monitor(void *main);
 
 #endif
