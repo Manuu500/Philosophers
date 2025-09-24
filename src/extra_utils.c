@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 13:49:52 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/17 18:35:32 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/24 14:45:37 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,12 @@ void	start_forks(t_main *main)
 	while (i < main->philo_count)
 	{
 		pthread_mutex_init(&main->fork[i], NULL);
-		printf("Se ha creado el tenedor: %i\n", i + 1);
+		main->philo_array[i].l_fork = &main->fork[i];
+        main->philo_array[i].r_fork = &main->fork[(i + 1) % main->philo_count];
+		// printf("Se ha creado el tenedor: %i\n", i + 1);
+		printf("Filosofo %d: l_fork=%p, r_fork=%p\n", i, 
+		(void*)main->philo_array[i].l_fork, 
+		(void*)main->philo_array[i].r_fork);
 		i++;
 	}
 	assign_forks(main);
