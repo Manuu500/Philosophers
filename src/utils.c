@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:10:06 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/24 16:53:00 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/30 17:56:05 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	initialize_vars(t_main *main, char **argv)
 		main->philo_array[i].id = i;
 		main->philo_array[i].meals_eaten = 0;
 		main->philo_array[i].dead = 0;
-		main->philo_array[i].last_meal = 0;
+		main->philo_array[i].last_meal = get_current_time();
 		main->philo_array[i].write_lock = &main->write_lock;
 		main->philo_array[i].dead_lock = &main->dead_lock;
 		main->philo_array[i].meal_lock = &main->meal_lock;
@@ -48,42 +48,44 @@ void	initialize_threads(t_main *main, char **argv)
 	thread_amount = ft_atoi(argv[1]);
 	while (i < thread_amount)
 	{
+		main->philo_array[i].time = get_current_time();
 		pthread_create(&main->philo_array[i].thread, NULL, (void *)&routine, &main->philo_array[i]);
 		i++;
 	}
 	if (main->philo_count > 1)
+	{
 		pthread_create(&main->observer, NULL, (void *)&monitor, main);
+	}
 	i = 0;
 	while (i < thread_amount)
 	{
-		pthread_join(main->philo_array[1].thread, NULL);
+		pthread_join(main->philo_array[i].thread, NULL);
 		i++;
 	}
 	if (main->philo_count > 1)
-		pthread_join(main->observer, NULL);	
+		pthread_join(main->observer, NULL);
 }
 
 void	initialize_all_mutex(t_main *main)
 {
-	// Only initialize the shared mutexes
 	pthread_mutex_init(&main->write_lock, NULL);
 	pthread_mutex_init(&main->dead_lock, NULL);
 	pthread_mutex_init(&main->meal_lock, NULL);	
 }
 
-void	assign_forks(t_main *main)
-{
-	(void) main;
-	// int	i;
+// void	assign_forks(t_main *main)
+// {
+// 	(void) main;
+// 	// int	i;
 
-	// i = 0;
-	// while (i < main->philo_count)
-	// {
-	// 	main->philo_array[i].l_fork = &main->fork[i];
-    //     main->philo_array[i].r_fork = &main->fork[(i + 1) % main->philo_count];
-	// 	printf("Filosofo %d: l_fork=%p, r_fork=%p\n", i, 
-	// 	(void*)main->philo_array[i].l_fork, 
-	// 	(void*)main->philo_array[i].r_fork);
-	// 	i++;
-	// }
-}
+// 	// i = 0;
+// 	// while (i < main->philo_count)
+// 	// {
+// 	// 	main->philo_array[i].l_fork = &main->fork[i];
+//     //     main->philo_array[i].r_fork = &main->fork[(i + 1) % main->philo_count];
+// 	// 	printf("Filosofo %d: l_fork=%p, r_fork=%p\n", i, 
+// 	// 	(void*)main->philo_array[i].l_fork, 
+// 	// 	(void*)main->philo_array[i].r_fork);
+// 	// 	i++;
+// 	// }
+// }

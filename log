@@ -1,0 +1,30 @@
+Filosofo 0: l_fork=0x1f8bb410, r_fork=0x1f8bb438
+Filosofo 1: l_fork=0x1f8bb438, r_fork=0x1f8bb460
+Filosofo 2: l_fork=0x1f8bb460, r_fork=0x1f8bb410
+0 0 is thinking
+0 0 has taken a fork
+0 0 has taken a fork
+0 0 is eating
+1 2 is thinking
+1 2 has taken a fork
+4 1 is thinking
+101 0 is sleeping
+101 2 has taken a fork
+101 2 is eating
+201 0 is thinking
+201 2 is sleeping
+201 0 has taken a fork
+201 0 has taken a fork
+201 0 is eating
+201 1 has taken a fork
+301 2 is thinking
+301 0 is sleeping
+301 1 has taken a fork
+301 1 is eating
+401 0 is thinking
+401 1 is sleeping
+401 0 has taken a fork
+401 0 has taken a fork
+401 0 is eating
+401 2 has taken a fork
+El filósofo 2 ha muerto

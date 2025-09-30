@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/24 15:45:27 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/30 18:23:58 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <unistd.h>
-#include <sys/time.h>
+# include <sys/time.h>
+# include <limits.h>
 
 typedef struct s_philosophers
 {
@@ -25,6 +26,8 @@ typedef struct s_philosophers
 	int				meals_eaten;
 	int				num_times_to_eat;
 	int				dead;
+	int				num_of_philos;
+	long long		time;
 	size_t			last_meal;
 	size_t			time_to_die;
 	size_t			time_to_eat;
