@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:17:47 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/24 14:49:23 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/09/30 18:44:57 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 {
 	t_main main;	
 	
-	if (argc < 0 || argc > 6)
+	if (argc != 6)
 		return (0);
 	{
 		check_input(argv, argc);
