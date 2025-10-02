@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:17:47 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/30 18:44:57 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/02 17:52:39 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 		initialize_threads(&main, argv);
 		// monitor(&main);
 		//DEBUG
-		check_philos(&main);
+		// check_philos(&main);
 		//
 		pthread_mutex_destroy(&main.write_lock);
 		safe_free(&main);
