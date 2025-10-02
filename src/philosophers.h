@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/30 18:23:58 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/02 16:54:57 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 typedef struct s_philosophers
 {
+	int				meals_to_eat;
 	int				id;
 	int				eating;
 	int				meals_eaten;

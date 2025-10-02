@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 18:12:22 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/30 18:14:19 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/02 17:38:17 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	update_last_meal_time(t_philo *philo)
 	pthread_mutex_lock(philo->meal_lock);
 	philo->last_meal = current_time;
 	philo->meals_eaten++;
+	printf("El filosofo %d ha comido %d veces\n", philo->id, philo->meals_eaten);
 	pthread_mutex_unlock(philo->meal_lock);
 }
 
@@ -41,7 +42,7 @@ void	*routine(void *main)
 		if(philo->num_of_philos == 1)
 		{
 			usleep(philo->time_to_die * 1000);
-			printf("%llu %d ha muerto\n", (get_current_time() - philo->time), philo->id);
+			printf("%llu %d is dead\n", (get_current_time() - philo->time), philo->id);
 			return (NULL);
 		}
 		if (philo->id % 2 == 0)
@@ -81,30 +82,43 @@ void	*monitor(void *main)
     int		i;
 	int		j;
     long long	now;
+	int		all_eaten;
 
 	data = (t_main *)main;
     while (1)
     {
+		all_eaten = 1;
         i = 0;
         while (i < data->philo_count)
         {
             pthread_mutex_lock(data->philo_array[i].meal_lock);
             now = get_current_time();
+			if ((data->philo_array[i].meals_eaten < data->philo_array[i].meals_to_eat))
+				all_eaten = 0;
             if (now - data->philo_array[i].last_meal > data->philo_array[i].time_to_die)
 			{
-				j =20;
+				j = 0;
 				while (j < data->philo_count)
 				{
 					data->philo_array[j].dead = 1;	
 					j++;
 				}
-				printf("El filósofo %d ha muerto\n", data->philo_array[i].id);
-				// data->phex_unlock(data->philo_array[i].meal_lock);
+				printf("%llu %d is dead\n", (get_current_time() - data->philo_array[i].time), data->philo_array[i].id);
 				exit(0);
 			}
 			pthread_mutex_unlock(data->philo_array[i].meal_lock);
             i++;
         }
+		if (all_eaten)
+		{
+			j = 0;
+			while (j < data->philo_count)
+			{
+				printf("El filosofo %d ha comido %d veces\n", data->philo_array[j].id, data->philo_array[j].meals_eaten);
+				j++;
+			}
+			exit(0);
+		}
         usleep(2000);
     }
     return (NULL);	

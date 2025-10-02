@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:10:06 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/30 17:56:05 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/02 16:55:34 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	initialize_vars(t_main *main, char **argv)
 		exit(1);
 	while (i < main->philo_count)
 	{
+		main->philo_array[i].meals_to_eat = ft_atoi(argv[5]);
 		main->philo_array[i].id = i;
 		main->philo_array[i].meals_eaten = 0;
 		main->philo_array[i].dead = 0;
