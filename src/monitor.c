@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 19:44:33 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/06 16:14:20 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/06 17:41:49 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	monitor_philos(t_main *data, int i)
 		}
 		printf("%llu %d is dead\n", (get_current_time() - data->philo_array[i].time), data->philo_array[i].id);
 		pthread_mutex_unlock(data->philo_array[i].meal_lock);
-		return (1);
+		safe_free(data);
 	}
 	pthread_mutex_unlock(data->philo_array[i].meal_lock);
 	return (0);
@@ -69,9 +69,9 @@ void	*monitor(void *main)
         {
 			if ((data->philo_array[i].meals_eaten < data->philo_array[i].meals_to_eat))
 				all_eaten = 0;
-			is_dead = monitor_philos(data, i);
-			if (is_dead == 1)
-				safe_free(data);
+			monitor_philos(data, i);
+			// if (is_dead == 1)
+			// 	safe_free(data);
             i++;
         }
 		check_meals_eaten(data, all_eaten);

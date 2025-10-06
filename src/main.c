@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:17:47 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/06 16:43:42 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/06 17:32:39 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	main(int argc, char **argv)
 		initialize_all_mutex(&main);
 		start_forks(&main);
 		initialize_threads(&main, argv);
-		safe_free(&main);
+		// safe_free(&main);
 	}
 }
