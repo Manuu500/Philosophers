@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/02 19:55:47 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/06 16:10:52 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,20 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <limits.h>
+
+typedef struct s_philosophers t_philo;
+
+typedef struct s_main
+{
+	int				philo_count;
+	int				dead_flag;
+	t_philo 		*philo_array;
+	pthread_mutex_t *fork;
+	pthread_mutex_t	dead_lock;
+	pthread_mutex_t	meal_lock;
+	pthread_mutex_t write_lock;
+	pthread_t		observer;
+}					t_main;
 
 typedef struct s_philosophers
 {
@@ -40,19 +54,8 @@ typedef struct s_philosophers
 	pthread_mutex_t	*write_lock;
 	pthread_mutex_t	*dead_lock;
 	pthread_mutex_t	*meal_lock;
+	t_main			*main;
 }					t_philo;
-
-typedef struct s_main
-{
-	int				philo_count;
-	int				dead_flag;
-	t_philo 		*philo_array;
-	pthread_mutex_t *fork;
-	pthread_mutex_t	dead_lock;
-	pthread_mutex_t	meal_lock;
-	pthread_mutex_t write_lock;
-	pthread_t		observer;
-}					t_main;
 
 int		ft_atoi(const char *str);
 void	set_philosopher(t_main *main, int num_philo);
@@ -79,6 +82,6 @@ size_t	get_current_time(void);
 void	assign_forks(t_main *main);
 void	*monitor(void *main);
 void	philo_routine(t_philo *philo);
-void	monitor_philos(t_main *data, int i);
+int	monitor_philos(t_main *data, int i);
 
 #endif

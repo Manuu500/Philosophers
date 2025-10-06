@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitor_extra.c                                    :+:      :+:    :+:   */
+/*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 19:44:33 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/02 19:58:38 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/06 16:14:20 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	check_meals_eaten(t_main *data, int all_eaten)
 {
 	int	j;
-
 	
 	if (all_eaten)
 	{
@@ -29,7 +28,7 @@ static void	check_meals_eaten(t_main *data, int all_eaten)
 	}
 }
 
-void	monitor_philos(t_main *data, int i)
+int	monitor_philos(t_main *data, int i)
 {
 	int	j;
     long long	now;
@@ -41,24 +40,28 @@ void	monitor_philos(t_main *data, int i)
 		j = 0;
 		while (j < data->philo_count)
 		{
-			data->philo_array[j].dead = 1;	
+			pthread_mutex_lock(&data->dead_lock);
+			data->philo_array[j].dead = 1;
+			pthread_mutex_unlock(&data->dead_lock);
 			j++;
 		}
 		printf("%llu %d is dead\n", (get_current_time() - data->philo_array[i].time), data->philo_array[i].id);
-		exit(0);
+		pthread_mutex_unlock(data->philo_array[i].meal_lock);
+		return (1);
 	}
 	pthread_mutex_unlock(data->philo_array[i].meal_lock);
+	return (0);
 }
 
 void	*monitor(void *main)
 {
     t_main	*data;
     int		i;
-	// int		j;
+	int		is_dead = 0;
 	int		all_eaten;
 
 	data = (t_main *)main;
-    while (1)
+    while (is_dead != 1)
     {
 		all_eaten = 1;
         i = 0;
@@ -66,7 +69,9 @@ void	*monitor(void *main)
         {
 			if ((data->philo_array[i].meals_eaten < data->philo_array[i].meals_to_eat))
 				all_eaten = 0;
-			monitor_philos(data, i);
+			is_dead = monitor_philos(data, i);
+			if (is_dead == 1)
+				safe_free(data);
             i++;
         }
 		check_meals_eaten(data, all_eaten);
