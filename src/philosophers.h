@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/06 16:10:52 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/07 13:25:13 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_philosophers t_philo;
 
 typedef struct s_main
 {
+	int				args_count;
 	int				philo_count;
 	int				dead_flag;
 	t_philo 		*philo_array;
@@ -57,9 +58,10 @@ typedef struct s_philosophers
 	t_main			*main;
 }					t_philo;
 
+
 int		ft_atoi(const char *str);
 void	set_philosopher(t_main *main, int num_philo);
-void	initialize_vars(t_main *main, char **argv);
+void	initialize_vars(t_main *main, char **argv, int argc);
 void	*ft_calloc(size_t num, size_t size);
 void	ft_bzero(void *s, unsigned int leng);
 void	initialize_threads(t_main *main, char **argv);

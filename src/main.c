@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:17:47 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/06 17:32:39 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/07 12:27:52 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ int	main(int argc, char **argv)
 {
 	t_main main;	
 	
-	if (argc != 6)
+	printf("Hay %d argumentos\n", argc);
+	if (argc != 5 && argc != 6)
 		return (0);
+	else
 	{
 		check_input(argv, argc);
-		initialize_vars(&main, argv);
+		initialize_vars(&main, argv, argc);
 		initialize_all_mutex(&main);
 		start_forks(&main);
 		initialize_threads(&main, argv);

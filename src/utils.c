@@ -6,13 +6,21 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:10:06 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/02 16:55:34 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/07 13:28:27 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	initialize_vars(t_main *main, char **argv)
+static void	check_parameter_count(t_main *main, char **argv, int argc, int i)
+{
+	if (argc == 6)
+		main->philo_array[i].meals_to_eat = ft_atoi(argv[5]);
+	else
+		main->philo_array[i].meals_to_eat = 0;
+}
+
+void	initialize_vars(t_main *main, char **argv, int argc)
 {
 	int	philo_count;
 	int	i;
@@ -23,9 +31,10 @@ void	initialize_vars(t_main *main, char **argv)
 	main->philo_array = malloc(sizeof(t_philo) * philo_count);
 	if (!main->philo_array)
 		exit(1);
+	main->args_count = argc;
 	while (i < main->philo_count)
 	{
-		main->philo_array[i].meals_to_eat = ft_atoi(argv[5]);
+		check_parameter_count(main, argv, argc, i);
 		main->philo_array[i].id = i;
 		main->philo_array[i].meals_eaten = 0;
 		main->philo_array[i].dead = 0;

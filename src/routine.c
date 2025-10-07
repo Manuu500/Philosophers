@@ -6,11 +6,18 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 18:12:22 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/06 17:31:08 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/07 12:52:00 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+static void	kill_lone_philo(t_philo *philo)
+{
+	pthread_mutex_lock(philo->dead_lock);
+	philo->dead = 1;
+	pthread_mutex_unlock(philo->dead_lock);
+}
 
 static void philos_forks(t_philo *philo)
 {
@@ -77,9 +84,7 @@ void	philo_routine(t_philo *philo)
 		usleep(philo->time_to_die * 1000);
 		printf("%llu %d died\n", (get_current_time() - philo->time), philo->id);
 		pthread_mutex_unlock(philo->l_fork);
-		pthread_mutex_lock(philo->dead_lock);
-		philo->dead = 1;
-		pthread_mutex_unlock(philo->dead_lock);
+		kill_lone_philo(philo);
 		return;
 	}
 	philos_forks(philo);
