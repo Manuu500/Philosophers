@@ -2,7 +2,7 @@ NAME	:= philo
 
 CC = cc
 
-CFLAGS	:= -Wextra -Wall -Werror -g
+CFLAGS	:= -Wextra -Wall -Werror -g -fsanitize=thread
 
 HEADERS	:=	-I ./inc 
 
@@ -25,7 +25,7 @@ libft:
 
 $(NAME): $(OBJ)
 	@echo "compiling ${NAME}"
-	@$(CC) $(OBJ) $(HEADERS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(HEADERS) -o $(NAME)
 
 obj/%.o: src/%.c
 	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@ && printf "Compiling: $(notdir $<)\n"
