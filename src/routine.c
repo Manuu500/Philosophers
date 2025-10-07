@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 18:12:22 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/07 12:52:00 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/07 16:44:48 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	*routine(void *main)
 		if (philo->dead)
 		{
 			pthread_mutex_unlock(philo->dead_lock);
+			// safe_free(main);
 			break;
 		}
 		pthread_mutex_unlock(philo->dead_lock);

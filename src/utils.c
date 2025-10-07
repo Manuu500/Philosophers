@@ -6,13 +6,13 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:10:06 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/07 13:28:27 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/07 16:52:46 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static void	check_parameter_count(t_main *main, char **argv, int argc, int i)
+static void	check_meals_argument(t_main *main, char **argv, int argc, int i)
 {
 	if (argc == 6)
 		main->philo_array[i].meals_to_eat = ft_atoi(argv[5]);
@@ -34,7 +34,7 @@ void	initialize_vars(t_main *main, char **argv, int argc)
 	main->args_count = argc;
 	while (i < main->philo_count)
 	{
-		check_parameter_count(main, argv, argc, i);
+		check_meals_argument(main, argv, argc, i);
 		main->philo_array[i].id = i;
 		main->philo_array[i].meals_eaten = 0;
 		main->philo_array[i].dead = 0;
@@ -83,6 +83,29 @@ void	initialize_all_mutex(t_main *main)
 	pthread_mutex_init(&main->meal_lock, NULL);	
 }
 
+void	end_program(t_main *main)
+{
+	int	i;
+
+	if (main->philo_array)
+		free(main->philo_array);
+	if (main->fork)
+		free(main->fork);
+	pthread_mutex_destroy(main->fork);
+	pthread_mutex_destroy(&main->dead_lock);
+	pthread_mutex_destroy(&main->meal_lock);
+	pthread_mutex_destroy(&main->write_lock);
+	i = 0;
+	while(i < main->philo_count)
+	{
+		pthread_mutex_destroy(main->philo_array[i].r_fork);
+		pthread_mutex_destroy(main->philo_array[i].l_fork);
+		pthread_mutex_destroy(main->philo_array[i].write_lock);
+		pthread_mutex_destroy(main->philo_array[i].dead_lock);
+		pthread_mutex_destroy(main->philo_array[i].meal_lock);
+		i++;
+	}	
+}
 // void	assign_forks(t_main *main)
 // {
 // 	(void) main;

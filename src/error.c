@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:00:50 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/06 17:40:09 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/07 16:27:41 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ void	safe_free(t_main *main)
 	int	i;
 
 	i = 0;
+	if (main->philo_array)
+		free(main->philo_array);
 	pthread_mutex_destroy(&main->dead_lock);
 	pthread_mutex_destroy(&main->meal_lock);
 	pthread_mutex_destroy(&main->write_lock);
+	i = 0;
 	if (main->fork)
 	{
 		while (i < main->philo_count)
@@ -51,7 +54,5 @@ void	safe_free(t_main *main)
 		}
 		free(main->fork);
 	}
-	if (main->philo_array)
-		free(main->philo_array);
 	exit(0);
 }

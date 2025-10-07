@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/07 13:25:13 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/07 16:46:40 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ void	assign_forks(t_main *main);
 void	*monitor(void *main);
 void	philo_routine(t_philo *philo);
 int	monitor_philos(t_main *data, int i);
+void	end_program(t_main *main);
 
 #endif
