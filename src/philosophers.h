@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/07 16:46:40 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/09 15:27:50 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_main
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t write_lock;
+	pthread_mutex_t	clean;
 	pthread_t		observer;
 }					t_main;
 
@@ -83,8 +84,9 @@ void	*r_sleep(t_main *main);
 size_t	get_current_time(void);
 void	assign_forks(t_main *main);
 void	*monitor(void *main);
-void	philo_routine(t_philo *philo);
-int	monitor_philos(t_main *data, int i);
+int		philo_routine(t_philo *philo);
+int		monitor_philos(t_main *data, int i);
 void	end_program(t_main *main);
+int		check_philo_dead(t_philo *philo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:10:06 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/07 17:04:00 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/09 15:50:05 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void	end_program(t_main *main)
 	i = 0;
 	while(i < main->philo_count)
 	{
-		pthread_mutex_destroy(main->philo_array[i].r_fork);
-		pthread_mutex_destroy(main->philo_array[i].l_fork);
+		// pthread_mutex_destroy(main->philo_array[i].r_fork);
+		// pthread_mutex_destroy(main->philo_array[i].l_fork);
 		pthread_mutex_destroy(main->philo_array[i].write_lock);
 		pthread_mutex_destroy(main->philo_array[i].dead_lock);
 		pthread_mutex_destroy(main->philo_array[i].meal_lock);

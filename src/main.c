@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:17:47 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/07 16:53:07 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/09 15:49:49 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	*observer(t_main *main)
 	return (0);
 }
 
-void	*prueba(t_main *main)
-{
-	pthread_mutex_lock(&main->write_lock);
-	printf("Hola cada hilo de filosofo se ha creado bien\n");
-	pthread_mutex_unlock(&main->write_lock);
-	return (0);
-}
+// void	*prueba(t_main *main)
+// {
+// 	pthread_mutex_lock(&main->write_lock);
+// 	printf("Hola cada hilo de filosofo se ha creado bien\n");
+// 	pthread_mutex_unlock(&main->write_lock);
+// 	return (0);
+// }
 
 int	main(int argc, char **argv)
 {
