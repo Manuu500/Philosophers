@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 19:44:33 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/09 16:13:46 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/09 16:41:30 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ void	*monitor(void *main)
 				all_eaten = 0;
 			pthread_mutex_unlock(&data->meal_lock);
 			if (monitor_philos(data, i) == 1)
+			{
 				is_dead = 1;
+				return(NULL);
+			}
             i++;
         }
 		if (data->args_count != 5)
