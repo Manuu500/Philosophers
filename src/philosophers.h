@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/09 15:27:50 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/09 17:15:16 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,10 @@ int		philo_routine(t_philo *philo);
 int		monitor_philos(t_main *data, int i);
 void	end_program(t_main *main);
 int		check_philo_dead(t_philo *philo);
+void	only_philo_case(t_philo *philo);
+void	kill_lone_philo(t_philo *philo);
+void	free_forks(t_philo *philo);
+void	philo_sleeping(t_philo *philo);
+void	philo_eating(t_philo *philo);
 
 #endif

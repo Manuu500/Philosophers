@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 13:49:52 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/09 15:18:30 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/09 17:05:01 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	start_forks(t_main *main)
 		(void*)main->philo_array[i].r_fork);
 		i++;
 	}
-	// assign_forks(main);
 }
 
 size_t	get_current_time(void)

@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:10:06 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/09 15:50:05 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/09 17:05:13 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,19 +106,3 @@ void	end_program(t_main *main)
 	if (main->philo_array)
 			free(main->philo_array);
 }
-// void	assign_forks(t_main *main)
-// {
-// 	(void) main;
-// 	// int	i;
-
-// 	// i = 0;
-// 	// while (i < main->philo_count)
-// 	// {
-// 	// 	main->philo_array[i].l_fork = &main->fork[i];
-//     //     main->philo_array[i].r_fork = &main->fork[(i + 1) % main->philo_count];
-// 	// 	printf("Filosofo %d: l_fork=%p, r_fork=%p\n", i, 
-// 	// 	(void*)main->philo_array[i].l_fork, 
-// 	// 	(void*)main->philo_array[i].r_fork);
-// 	// 	i++;
-// 	// }
-// }

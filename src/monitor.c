@@ -6,26 +6,27 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 19:44:33 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/09 16:41:30 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/09 17:02:26 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+static int check_any_philo_dead(t_main *data, int is_dead, int i)
+{
+	if (monitor_philos(data, i) == 1)
+	{
+		is_dead = 1;
+		return(1);
+	}
+	return (0);
+}
+
 static void	check_meals_eaten(t_main *data, int all_eaten)
 {
-	// int	j;
 	(void) data;
 	if (all_eaten)
-	{
-		// j = 0;
-		// while (j < data->philo_count)
-		// {
-		// 	printf("El filosofo %d ha comido %d veces\n", data->philo_array[j].id, data->philo_array[j].meals_eaten);
-		// 	j++;
-		// }
 		exit(0);
-	}
 }
 
 int	monitor_philos(t_main *data, int i)
@@ -71,17 +72,13 @@ void	*monitor(void *main)
 			if ((data->philo_array[i].meals_eaten < data->philo_array[i].meals_to_eat))
 				all_eaten = 0;
 			pthread_mutex_unlock(&data->meal_lock);
-			if (monitor_philos(data, i) == 1)
-			{
-				is_dead = 1;
+			if (check_any_philo_dead(data, is_dead, i) == 1)
 				return(NULL);
-			}
             i++;
         }
 		if (data->args_count != 5)
 			check_meals_eaten(data, all_eaten);
         usleep(2000);
     }
-	printf("monitor exit\n");
     return (NULL);	
 }
