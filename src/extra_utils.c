@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 13:49:52 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/13 16:02:28 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/13 17:26:00 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ void	start_forks(t_main *main)
 		pthread_mutex_init(&main->fork[i], NULL);
 		main->philo_array[i].l_fork = &main->fork[i];
 		main->philo_array[i].r_fork = &main->fork[(i + 1) % main->philo_count];
-		printf("Filosofo %d: l_fork=%p, r_fork=%p\n", i,
-			(void*)main->philo_array[i].l_fork,
-			(void*)main->philo_array[i].r_fork);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:17:47 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/13 12:40:41 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/13 17:26:13 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	main(int argc, char **argv)
 {
 	t_main	main;
 
-	printf("Hay %d argumentos\n", argc);
 	if (argc != 5 && argc != 6)
 		return (0);
 	else
