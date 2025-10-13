@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 16:41:25 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/13 12:39:30 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/13 17:47:55 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	check_input(char **args, int argc)
 		j = 0;
 		while (args[i][j])
 		{
-			if ((args[i][j] < '0' || args[i][j] > '9') && (num > INT_MAX))
+			if (args[i][j] < '0' || args[i][j] > '9')
 			{
-				printf("Invalid argument");
+				printf("Invalid argument\n");
 				exit(1);
 			}
 			j++;
