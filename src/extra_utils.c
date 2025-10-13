@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 13:49:52 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/09 17:05:01 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/13 16:02:28 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	start_forks(t_main *main)
 	i = 0;
 	main->philo_array->num_of_philos = main->philo_count;
 	while (i < main->philo_count)
-	{		
+	{
 		pthread_mutex_init(&main->fork[i], NULL);
 		main->philo_array[i].l_fork = &main->fork[i];
-        main->philo_array[i].r_fork = &main->fork[(i + 1) % main->philo_count];
-		printf("Filosofo %d: l_fork=%p, r_fork=%p\n", i, 
-		(void*)main->philo_array[i].l_fork, 
-		(void*)main->philo_array[i].r_fork);
+		main->philo_array[i].r_fork = &main->fork[(i + 1) % main->philo_count];
+		printf("Filosofo %d: l_fork=%p, r_fork=%p\n", i,
+			(void*)main->philo_array[i].l_fork,
+			(void*)main->philo_array[i].r_fork);
 		i++;
 	}
 }
@@ -51,5 +51,10 @@ int	check_philo_dead(t_philo *philo)
 		return (1);
 	}
 	pthread_mutex_unlock(philo->dead_lock);
-	return (0);	
+	return (0);
+}
+
+long long	eat_time(t_philo *philo)
+{
+	return (get_current_time() - philo->time);
 }

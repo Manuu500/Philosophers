@@ -6,53 +6,54 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 18:12:22 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/09 17:15:03 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/13 15:58:15 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static int philos_forks(t_philo *philo)
+static int	philos_forks(t_philo *philo)
 {
 	if (check_philo_dead(philo) == 1)
-		return(1);
+		return (1);
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->l_fork);
 		if (check_philo_dead(philo) == 1)
-            return(1);
-		printf("%llu %d has taken a fork\n", (get_current_time() - philo->time), philo->id);
+			return (1);
+		printf("%llu %d has taken a fork\n", eat_time(philo), philo->id);
 		pthread_mutex_lock(philo->r_fork);
 		if (check_philo_dead(philo) == 1)
-            return(1);
-		printf("%llu %d has taken a fork\n", (get_current_time() - philo->time), philo->id);
+			return (1);
+		printf("%llu %d has taken a fork\n", eat_time(philo), philo->id);
 	}
 	else
 	{
 		pthread_mutex_lock(philo->r_fork);
 		if (check_philo_dead(philo) == 1)
-            return(1);
-		printf("%llu %d has taken a fork\n", (get_current_time() - philo->time), philo->id);
+			return (1);
+		printf("%llu %d has taken a fork\n", eat_time(philo), philo->id);
 		pthread_mutex_lock(philo->l_fork);
 		if (check_philo_dead(philo) == 1)
-            return(1);
-		printf("%llu %d has taken a fork\n", (get_current_time() - philo->time), philo->id);
+			return (1);
+		printf("%llu %d has taken a fork\n", eat_time(philo), philo->id);
 	}
-	return(0);
+	return (0);
 }
 
 static int	update_last_meal_time(t_philo *philo)
 {
-	long long current_time;
-	
+	long long	current_time;
+
 	current_time = get_current_time();
 	pthread_mutex_lock(philo->meal_lock);
 	philo->last_meal = current_time;
 	philo->meals_eaten++;
-	printf("El filosofo %d ha comido %d veces\n", philo->id, philo->meals_eaten);
+	printf("El filosofo %d ha comido %d veces\n",
+		philo->id, philo->meals_eaten);
 	pthread_mutex_unlock(philo->meal_lock);
 	if (check_philo_dead(philo) == 1)
-		return(1);
+		return (1);
 	return (0);
 }
 
@@ -65,7 +66,7 @@ void	kill_lone_philo(t_philo *philo)
 
 void	*routine(void *main)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)main;
 	pthread_mutex_lock(philo->meal_lock);
@@ -76,7 +77,7 @@ void	*routine(void *main)
 	while (1)
 	{
 		if (check_philo_dead(philo) == 1)
-			break;
+			break ;
 		philo_routine(philo);
 	}
 	printf("philo %i exit\n", philo->id);
@@ -86,25 +87,26 @@ void	*routine(void *main)
 int	philo_routine(t_philo *philo)
 {
 	if (check_philo_dead(philo) == 1)
-		return(1);
-	printf("%llu %d is thinking\n", (get_current_time() - philo->time), philo->id);
-	if(philo->num_of_philos == 1)
+		return (1);
+	printf("%llu %d is thinking\n",
+		(get_current_time() - philo->time), philo->id);
+	if (philo->num_of_philos == 1)
 	{
 		only_philo_case(philo);
 		return (1);
 	}
 	philos_forks(philo);
 	if (check_philo_dead(philo) == 1)
-		return(1);
+		return (1);
 	philo_eating(philo);
 	if (update_last_meal_time(philo) == 1)
-		return(1);
+		return (1);
 	usleep(philo->time_to_eat * 1000);
 	free_forks(philo);
 	if (check_philo_dead(philo) == 1)
-		return(1);
+		return (1);
 	philo_sleeping(philo);
 	if (check_philo_dead(philo) == 1)
-		return(1);
+		return (1);
 	return (0);
 }

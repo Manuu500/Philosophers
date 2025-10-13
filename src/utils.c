@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:10:06 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/09 17:05:13 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/13 16:00:52 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,14 @@ void	initialize_threads(t_main *main, char **argv)
 {
 	int	thread_amount;
 	int	i;
-	
+
 	i = 0;
 	thread_amount = ft_atoi(argv[1]);
 	while (i < thread_amount)
 	{
 		main->philo_array[i].time = get_current_time();
-		pthread_create(&main->philo_array[i].thread, NULL, (void *)&routine, &main->philo_array[i]);
+		pthread_create(&main->philo_array[i].thread,
+			NULL, (void *)&routine, &main->philo_array[i]);
 		i++;
 	}
 	if (main->philo_count > 1)
@@ -80,7 +81,7 @@ void	initialize_all_mutex(t_main *main)
 {
 	pthread_mutex_init(&main->write_lock, NULL);
 	pthread_mutex_init(&main->dead_lock, NULL);
-	pthread_mutex_init(&main->meal_lock, NULL);	
+	pthread_mutex_init(&main->meal_lock, NULL);
 }
 
 void	end_program(t_main *main)
@@ -91,10 +92,8 @@ void	end_program(t_main *main)
 	pthread_mutex_destroy(&main->meal_lock);
 	pthread_mutex_destroy(&main->write_lock);
 	i = 0;
-	while(i < main->philo_count)
+	while (i < main->philo_count)
 	{
-		// pthread_mutex_destroy(main->philo_array[i].r_fork);
-		// pthread_mutex_destroy(main->philo_array[i].l_fork);
 		pthread_mutex_destroy(main->philo_array[i].write_lock);
 		pthread_mutex_destroy(main->philo_array[i].dead_lock);
 		pthread_mutex_destroy(main->philo_array[i].meal_lock);
@@ -104,5 +103,5 @@ void	end_program(t_main *main)
 		free(main->fork);
 	pthread_mutex_destroy(main->fork);
 	if (main->philo_array)
-			free(main->philo_array);
+		free(main->philo_array);
 }

@@ -7,7 +7,6 @@ CFLAGS	:= -Wextra -Wall -Werror -g -fsanitize=thread
 HEADERS	:=	-I ./inc 
 
 SRC :=	src/main.c \
-		src/philosopher.c \
 		src/utils_functions.c \
 		src/utils.c \
 		src/input.c \

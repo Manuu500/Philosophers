@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 16:41:25 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/30 18:40:22 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/13 12:39:30 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	check_input(char **args, int argc)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	long	num;
 
 	i = 1;
@@ -32,11 +32,11 @@ void	check_input(char **args, int argc)
 			j++;
 		}
 		num = ft_atoi(args[i]);
-        if (num > INT_MAX || num <= 0)
-        {
-            printf("Argument out of range\n");
-            exit(1);
-        }
+		if (num > INT_MAX || num <= 0)
+		{
+			printf("Argument out of range\n");
+			exit(1);
+		}
 		i++;
 	}
 }
