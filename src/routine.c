@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 18:12:22 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/13 15:58:15 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/13 17:18:34 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ static int	update_last_meal_time(t_philo *philo)
 	pthread_mutex_lock(philo->meal_lock);
 	philo->last_meal = current_time;
 	philo->meals_eaten++;
-	printf("El filosofo %d ha comido %d veces\n",
-		philo->id, philo->meals_eaten);
 	pthread_mutex_unlock(philo->meal_lock);
 	if (check_philo_dead(philo) == 1)
 		return (1);
@@ -80,7 +78,6 @@ void	*routine(void *main)
 			break ;
 		philo_routine(philo);
 	}
-	printf("philo %i exit\n", philo->id);
 	return (0);
 }
 
