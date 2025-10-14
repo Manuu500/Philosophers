@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:10:06 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/13 16:00:52 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:23:26 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ void	initialize_threads(t_main *main, char **argv)
 		i++;
 	}
 	if (main->philo_count > 1)
-	{
 		pthread_create(&main->observer, NULL, (void *)&monitor, main);
-	}
 	i = 0;
 	while (i < thread_amount)
 	{

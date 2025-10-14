@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/13 16:03:48 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:43:51 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void		kill_lone_philo(t_philo *philo);
 void		free_forks(t_philo *philo);
 void		philo_sleeping(t_philo *philo);
 void		philo_eating(t_philo *philo);
+void		micro_usleep(t_philo *philo, int time_to_sleep);
 
 #endif

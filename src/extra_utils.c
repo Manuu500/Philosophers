@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 13:49:52 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/13 17:26:00 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:59:57 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,37 @@ long long	eat_time(t_philo *philo)
 {
 	return (get_current_time() - philo->time);
 }
+
+void	micro_usleep(t_philo *philo, int time_to_sleep)
+{
+	size_t	start_time;
+	size_t	current_time;
+
+	start_time = get_current_time();
+	while (1)
+	{
+		if (check_philo_dead(philo))
+			return ;
+		current_time = get_current_time();
+		if ((current_time - start_time) >= (size_t)time_to_sleep)
+			break ;
+		usleep(500);
+	}
+}
+
+// void	micro_usleep(t_philo *philo, int time_to_sleep)
+// {
+// 	size_t	start_time;
+//     size_t	current_time;
+
+//     start_time = get_current_time();
+//     while (1)
+//     {
+//         if(check_philo_dead(philo))
+// 			return ;
+//         current_time = get_current_time();
+//         if ((current_time - start_time) >= (size_t)time_to_sleep)
+//             break;
+//         usleep(500);
+// 	}
+// }

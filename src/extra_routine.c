@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:06:42 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/13 12:36:20 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:58:37 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	philo_sleeping(t_philo *philo)
 	printf("%llu %d is sleeping\n",
 		(get_current_time() - philo->time), philo->id);
 	pthread_mutex_unlock(philo->write_lock);
-	usleep(philo->time_to_sleep * 1000 + 500);
+	micro_usleep(philo, philo->time_to_sleep);
 }
 
 void	philo_eating(t_philo *philo)

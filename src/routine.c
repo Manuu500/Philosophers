@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 18:12:22 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/13 17:18:34 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:51:04 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	philo_routine(t_philo *philo)
 	philo_eating(philo);
 	if (update_last_meal_time(philo) == 1)
 		return (1);
-	usleep(philo->time_to_eat * 1000);
+	micro_usleep(philo, philo->time_to_eat);
 	free_forks(philo);
 	if (check_philo_dead(philo) == 1)
 		return (1);
