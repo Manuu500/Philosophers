@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 18:12:22 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/14 16:37:27 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/14 17:55:29 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	*routine(void *main)
 		if (check_philo_dead(philo) == 1)
 			break ;
 		philo_routine(philo);
+		// usleep(1000);
 	}
 	return (0);
 }
@@ -85,8 +86,6 @@ int	philo_routine(t_philo *philo)
 {
 	if (check_philo_dead(philo) == 1)
 		return (1);
-	printf("%llu %d is thinking\n",
-		(get_current_time() - philo->time), philo->id);
 	if (philo->num_of_philos == 1)
 	{
 		only_philo_case(philo);
@@ -105,5 +104,9 @@ int	philo_routine(t_philo *philo)
 	philo_sleeping(philo);
 	if (check_philo_dead(philo) == 1)
 		return (1);
+	printf("%llu %d is thinking\n",
+		(get_current_time() - philo->time), philo->id);
+	if (philo->time_to_eat > philo->time_to_sleep)
+		micro_usleep(philo, philo->time_to_eat - philo->time_to_sleep);
 	return (0);
 }
