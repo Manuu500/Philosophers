@@ -6,16 +6,16 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:15:33 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/09/15 17:02:23 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:21:49 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	size_t		i;
-	int			n;
+	long			n;
 	int			sign;
 
 	n = 0;

@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:18:37 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/14 15:43:51 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:21:00 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_philosophers
 }					t_philo;
 
 long long	eat_time(t_philo *philo);
-int			ft_atoi(const char *str);
+long		ft_atoi(const char *str);
 void		initialize_vars(t_main *main, char **argv, int argc);
 void		*ft_calloc(size_t num, size_t size);
 void		ft_bzero(void *s, unsigned int leng);
