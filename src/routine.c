@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 18:12:22 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/14 17:55:29 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:42:45 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	*routine(void *main)
 		if (check_philo_dead(philo) == 1)
 			break ;
 		philo_routine(philo);
-		// usleep(1000);
 	}
 	return (0);
 }

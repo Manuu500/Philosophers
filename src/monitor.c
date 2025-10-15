@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 19:44:33 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/14 17:26:06 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:43:01 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	*monitor(void *main)
 		}
 		if (data->args_count != 5)
 			check_meals_eaten(data, all_eaten);
-		// usleep(2000);
 		micro_usleep(data->philo_array, 1);
 	}
 	return (NULL);

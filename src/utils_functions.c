@@ -6,7 +6,7 @@
 /*   By: mruiz-ur <mruiz-ur@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 16:15:33 by mruiz-ur          #+#    #+#             */
-/*   Updated: 2025/10/14 16:21:49 by mruiz-ur         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:42:18 by mruiz-ur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 long	ft_atoi(const char *str)
 {
 	size_t		i;
-	long			n;
+	long		n;
 	int			sign;
 
 	n = 0;
